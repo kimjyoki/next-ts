@@ -6,15 +6,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "test": "jest --config=jest.config.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ./src/**/*.ts",
+    "lint.fix": "eslint --fix src/**/*.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime": "^7.15.4",
-    "@emotion/babel-plugin": "^11.3.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@types/babel__core": "^7",
@@ -25,10 +26,12 @@
     "@types/react-dom": "^17",
     "@types/react-redux": "^7",
     "@types/redux-logger": "^3",
+    "@types/styled-components": "^5.1.15",
     "@types/testing-library__jest-dom": "^5",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
-    "eslint": "^8.0.1",
+    "babel-plugin-styled-components": "^1.13.3",
+    "eslint": "^8.1.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-airbnb-typescript": "^14.0.1",
@@ -44,9 +47,8 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
     "@reduxjs/toolkit": "^1.6.2",
+    "axios": "^0.24.0",
     "next": "^11.1.2",
     "next-redux-wrapper": "^7.0.5",
     "react": "^17.0.2",
@@ -54,6 +56,8 @@
     "react-redux": "^7.2.5",
     "redux-logger": "^3.0.6",
     "reselect": "^4.0.0",
+    "styled-components": "^5.3.3",
+    "styled-reset": "^4.3.4",
     "swr": "^1.0.1"
   }
 }

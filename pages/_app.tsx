@@ -1,14 +1,30 @@
-import reset from "../src/styles/reset";
-import { Global } from "@emotion/react";
-import type { AppProps } from "next/app";
-import { wrapper } from "../store";
+import { NextComponentType } from "next";
+import { AppContext, AppInitialProps, AppProps } from "next/app";
+import { Provider } from "react-redux";
+import store from "../store/store";
+import Layout from "../src/components/common/Layout";
+import { wrapper } from "../store/store";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
+  Component,
+  pageProps,
+}: AppProps) => {
   return (
-    <div>
+    <Provider store={store}>
+      <div>Valid MyApp type.</div>
       <Component {...pageProps} />
-      <Global styles={reset} />
-    </div>
+    </Provider>
   );
-}
+};
+
+MyApp.getInitialProps = async ({ Component, ctx }: AppContext): Promise<AppInitialProps> => {
+  let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  return { pageProps };
+};
+
 export default wrapper.withRedux(MyApp);
