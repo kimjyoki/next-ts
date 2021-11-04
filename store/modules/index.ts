@@ -1,9 +1,6 @@
 import { combineReducers, AnyAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { RootState } from "../store";
-
-import issuesDisplayWrapper from "../features/issuesDisplayWrapper";
-
 export interface State {
   tick: string;
 }
@@ -16,9 +13,7 @@ const rootReducer = (state: State = { tick: "init" }, action: AnyAction) => {
     case "TICK":
       return { ...state, ...action.payload };
     default:
-      return combineReducers({
-        issuesDisplayWrapper,
-      });
+      return combineReducers({});
   }
 };
 

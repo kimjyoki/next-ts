@@ -20,8 +20,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "module": "esnext",
-    "incremental": true
+    "incremental": true,
+    "module": "esnext"
   },
   "include": [
     "next-env.d.ts",
