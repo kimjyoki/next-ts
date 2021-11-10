@@ -5,6 +5,8 @@ import store from "../store/store";
 import Layout from "../src/components/common/Layout";
 import { wrapper } from "../store/store";
 
+import "antd/dist/antd.css";
+
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   Component,
   pageProps,
