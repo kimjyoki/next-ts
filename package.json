@@ -8,7 +8,7 @@
     "build": "next build",
     "test": "jest --config=jest.config.js",
     "start": "next start",
-    "pm22": "pm2 start --interpreter babel-node ecosystem.config.js --env production",
+    "pm2": "pm2 start ecosystem.config.js",
     "lint": "eslint ./src/**/*.yarn ts",
     "lint.fix": "eslint --fix src/**/*.ts"
   },
