@@ -1,29 +1,32 @@
 # Install dependencies and rebuild the source code only when neededonly
-FROM node:16.0.0-alpine AS builder
+FROM node:16.13.0-alpine AS builder
 ENV NODE_ENV production
 
+RUN apk add --no-cache bash
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-RUN yarn add global pm2
+COPY . .
 
-COPY ./ ./
+# RUN npm install -g pm2
 
 # RUN cd /usr/app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
-RUN cd /app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
+### RUN cd /app && echo 'YARN VERSION IN BUILDER: ' && yarn --version
 # Note yarn rebuild - this is to let yarn rebuild binaries
 RUN yarn rebuild && yarn build
+## RUN yarn build
 
 
 # Production image, copy all the files and run next
-FROM node:16.0.0-alpine AS runner
+FROM node:16.13.0-alpine AS runner
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 ENV NODE_ENV production
+
 WORKDIR /app
 
 # You only need to copy next.config.js if you are NOT using the default configuration
@@ -53,6 +56,6 @@ EXPOSE 3000
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED 0
 
-CMD [ "yarn", "pm2" ]
+CMD [ "yarn", "pm2:start" ]

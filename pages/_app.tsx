@@ -4,7 +4,6 @@ import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppProps } from "next/app";
 import { Provider } from "react-redux";
 import store from "../store/store";
-import Layout from "../src/components/common/Layout";
 import { wrapper } from "../store/store";
 
 import "antd/dist/antd.css";

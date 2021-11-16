@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Checkbox, Button, DatePicker, version } from "antd";
+import React from "react";
+import { Form, Input, Checkbox, Button} from "antd";
 import styled from "styled-components";
 
 //import TimePicker from "../components/common/TimePicker";
@@ -13,10 +13,6 @@ const LoginWrapper = styled.div`
 `;
 
 function Login() {
-  const onSuccess = (values: any) => {};
-
-  const onFailed = (erroInfo: any) => {};
-
   return (
     <LoginWrapper>
       <Form
@@ -24,8 +20,6 @@ function Login() {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        onFinish={onSuccess}
-        onFinishFailed={onFailed}
         autoComplete="off"
       >
         <Form.Item

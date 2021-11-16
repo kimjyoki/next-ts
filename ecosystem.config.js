@@ -1,26 +1,28 @@
+/* eslint-disable */
+const path = require("path");
+// const childProcess = require("child_process");
+// const nextVirtualPath = childProcess.execSync("yarn bin next").toString();
+
 module.exports = {
   apps: [
     {
       name: "nextjs",
-      // get binary path (nextjs + pm2 require node_modules/next/dist/next script);
-      // $ yarn bin next
-      script: ".yarn/__virtual__/next-virtual-9f90812a87/0/cache/next-npm-11.1.2-b1c338c95c-c5a6d01b6d.zip/node_modules/next/dist/bin/next",
-      interpreter: "bash",
-      interpreter_args: "--require ./.pnp.cjs",
+      cwd: __dirname,
+      // yarn bin next - resuilt path copied;
+      script: path.resolve(
+        __dirname,
+        ".yarn/__virtual__/next-virtual-289afadf9a/0/cache/next-npm-11.1.2-b1c338c95c-c5a6d01b6d.zip/node_modules/next/dist/bin/next",
+      ),
+      //interpreter: "/bin/bash",
       args: "start",
-      instances: 2,
+      instances: 3,
       exec_mode: "cluster",
-      autostart: true,
-      merge_logs: false,
-      watch: false,
-      listen_timeout: 50000, // 앱 실행 신호까지 기다릴 시간.
-      kill_timeout: 5000,  // 새로운 프로세스 실행이 완료된 후 예전 프로세스를 교체하기까지 기다릴 시간
-      env_development: {
-        PORT: 3000,
-        NODE_ENV: "development",
+      //exec_interpreter: "node",
+      env: {
+        PORT: "3000",
       },
       env_production: {
-        PORT: 3000,
+        PORT: "3000",
         NODE_ENV: "production",
       },
     },
